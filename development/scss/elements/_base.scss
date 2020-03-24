@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $bgColor;
+  color: $bgColor;
+  font-family: $font-primary;
+  overflow-x: hidden;
+  width: 100vw;
+
+  .site_container {
+    margin: 0 auto;
+    max-width: 90vw;
+  }
+}

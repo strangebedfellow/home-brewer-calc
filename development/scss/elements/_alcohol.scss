@@ -1,0 +1,30 @@
+.alcohol {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 2rem;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  p {
+    font-weight: bold;
+  }
+
+
+  form {
+    @include flex-column;
+    align-items: center;
+
+    input {
+      margin: 1rem;
+    }
+  }
+}

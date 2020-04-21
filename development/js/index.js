@@ -13,6 +13,7 @@ import CalculateAlc from './calculateAlc';
 import RefractometerCorrection from './refractometerCorrection';
 import BlgToSg from './blgToSg';
 import SgToBlg from './sgToBlg';
+import Dilution from './dilution';
 
 import convertToSg from './convertToSg';
 
@@ -21,11 +22,10 @@ class App extends Component {
         return <>
             <div className='site_container'>
                 <CalculateAlc />
-                
                 <RefractometerCorrection />
-
                 <BlgToSg />
                 <SgToBlg />
+                <Dilution />
             </div>
         </>
     }

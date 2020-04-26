@@ -9,8 +9,80 @@ body {
   overflow-x: hidden;
   width: 100vw;
 
-  .site_container {
-    margin: 0 auto;
-    max-width: 90vw;
+  #accordion {
+    width: 100%;
+
+    .card {
+      border-radius: 0;
+      background-color: transparent;
+      border: 0;
+      border-color: rgba(255, 255, 255, 0.05);
+      .card-header {
+        border-color: rgba(255, 255, 255, 0.05);
+
+        .mb-0 {
+          text-align: center;
+        }
+      }
+
+      .collapse,
+      .collapsing {
+        background-color: rgb(70, 67, 67);
+      }
+
+      .btn {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .icon-active {
+        color: yellow;
+      }
+
+      .rotate-down {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .header {
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .container {
+    .beer-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+      h1 {
+        background-image: url("/img/beer-253791_1920.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-size: 5rem;
+        font-family: "Titillium Web", sans-serif;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    .container {
+      .beer-header {
+        i {
+          font-size: 1rem;
+        }
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+    }
   }
 }

@@ -2,7 +2,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  align-items: center;
+  padding: 1rem;
 
   h1 {
     font-size: 2em;
@@ -16,12 +17,33 @@
 
   p {
     font-weight: bold;
+    padding: 1rem;
   }
 
+  .formula {
+    padding: 1rem;
+    color: yellow;
+    font-size: 2rem;
+    //border-bottom: 1px solid yellow;
+  }
+
+  .btn-submit {
+    color: yellow;
+    border: 2px solid yellow;
+    background-color: transparent;
+    padding: 0.8rem;
+    transition: all 0.1s ease;
+    &:hover {
+      background-color: rgb(255, 255, 0);
+      color: rgb(70, 67, 67);
+      font-weight: bold;
+    }
+  }
 
   form {
     @include flex-column;
     align-items: center;
+    text-align: center;
 
     input {
       margin: 1rem;

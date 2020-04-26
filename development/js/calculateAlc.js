@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-
 import convertToSg from './convertToSg';
 
 export default class CalculateAlc extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            og: 0,
-            fg: 0,
-            formula: false
+            og: 12,
+            fg: 3,
+            formula: false,
+            fermentationDegree: false
         }
     }
 
@@ -20,28 +19,30 @@ export default class CalculateAlc extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const { og, fg } = this.state;
-        this.setState({ formula: ((76.08 * (convertToSg(og) - convertToSg(fg)) / (1.775 - convertToSg(og))) * (convertToSg(fg) / 0.794)).toFixed(2) });
+        this.setState({
+            formula: ((76.08 * (convertToSg(og) - convertToSg(fg)) / (1.775 - convertToSg(og))) * (convertToSg(fg) / 0.794)).toFixed(2),
+            fermentationDegree: (((convertToSg(og) - convertToSg(fg)) / (convertToSg(og) - 1)) * 100)
+        });
     }
 
     render() {
-
-        const { og, fg, formula } = this.state;
+        const { formula, fermentationDegree } = this.state;
         return <>
-                <div className='alcohol'>
-                    <form onSubmit={this.handleSubmit}>
-                        <h1>Oblicz zawartość alkoholu w piwie</h1>
-                        <h2>Gęstość początkowa</h2>
-                        <input name='og' type='number' step="0.01" onChange={this.handleInput}></input>
-                        <h2>Gęstość końcowa</h2>
-                        <input name='fg' type='number' step="0.01" onChange={this.handleInput}></input>
-                        <input type="submit" value="Oblicz" />
-                        {formula && <>
-                            <p>Orientacyjna zawartość alkoholu (ABV - objętościowo): {`${formula} %`} </p>
-                            <p>Orientacyjna zawartość alkoholu (ABW - wagowo): {`${(formula / 1.26).toFixed(2)} %`} </p>
-                            <p>Stopień odfermentowania: {(((convertToSg(og) - convertToSg(fg)) / (convertToSg(og) - 1)) * 100).toFixed(1)} %</p>
-                        </>}
-                    </form>
-                </div>
+            <div className='alcohol'>
+                <form onSubmit={this.handleSubmit}>
+                    <h2>Gęstość początkowa (BLG)</h2>
+                    <input name='og' type='number' step="0.01" placeholder='12' onChange={this.handleInput}></input>
+                    <h2>Gęstość końcowa (BLG)</h2>
+                    <input name='fg' type='number' step="0.01" placeholder='3' onChange={this.handleInput}></input>
+                    <input type="submit" value="Oblicz" className='btn-submit' />
+                    <p>Orientacyjna zawartość alkoholu (ABV - objętościowo):</p>
+                    {formula && <p className='formula'>{`${formula} %`}</p>}
+                    <p>Orientacyjna zawartość alkoholu (ABW - wagowo):</p>
+                    {formula && <p className='formula'>{`${(formula / 1.26).toFixed(2)} %`}</p>}
+                    <p>Stopień odfermentowania:</p>
+                    {formula && <p className='formula'>{`${(fermentationDegree).toFixed(1)} %`}</p>}
+                </form>
+            </div >
         </>
     }
 }

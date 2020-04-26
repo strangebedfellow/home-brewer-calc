@@ -26,16 +26,15 @@ export default class Dilution extends Component {
         return <>
             <div className='alcohol'>
                 <form onSubmit={this.handleSubmit}>
-                    <h1>Korekta gęstości brzeczki</h1>
                     <label htmlFor='worthVolume'>Ilość brzeczki (L)</label>
                     <input name='worthVolume' type='number' step="0.1" placeholder='20' onChange={this.handleInput} value={worthVolume}></input>
                     <label htmlFor='currentGravity'>Obecna gęstość (BLG)</label>
                     <input name='currentGravity' type='number' step="0.1" placeholder='16' onChange={this.handleInput} value={currentGravity}></input>
                     <label htmlFor='targetGravity'>Oczekiwana gęstość (BLG)</label>
                     <input name='targetGravity' type='number' step="0.1" placeholder='12' onChange={this.handleInput} value={targetGravity}></input>
-                    <input type="submit" value="Oblicz" />
+                    <input type="submit" value="Oblicz" className='btn-submit' />
                     <p>Ilość wody, którą należy dodać do brzeczki:</p>
-                    {formula && <p>{formula} L</p>}
+                    {formula && <p className='formula'>{formula} L</p>}
                 </form>
             </div>
         </>

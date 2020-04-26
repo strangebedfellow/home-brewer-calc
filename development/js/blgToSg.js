@@ -5,7 +5,7 @@ export default class BlgToSg extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            blg: 0,
+            blg: 12,
             formula: false
         }
     }
@@ -16,24 +16,22 @@ export default class BlgToSg extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.setState({ formula: convertToSg(this.state.blg)});
+        this.setState({ formula: convertToSg(this.state.blg) });
     }
 
     render() {
 
         const { formula } = this.state;
         return <>
-                <div className='alcohol'>
-                    <form onSubmit={this.handleSubmit}>
-                        <h1>Konwerter jednostek gęstości</h1>
-                        <h2>BLG</h2>
-                        <input name='blg' type='number' step="0.1" placeholder='12' onChange={this.handleInput}></input>
-                        <input type="submit" value="Oblicz" />
-                        {formula && <>
-                            <p>SG (Specific Gravity): {formula} </p>
-                        </>}
-                    </form>
-                </div>
+            <div className='alcohol'>
+                <form onSubmit={this.handleSubmit}>
+                    <p>BLG</p>
+                    <input name='blg' type='number' step="0.1" placeholder='12' onChange={this.handleInput}></input>
+                    <input type="submit" value="Oblicz" className='btn-submit' />
+                    <p>SG (Specific Gravity):</p>
+                    {formula && <p className='formula'>{formula} </p>}
+                </form>
+            </div>
         </>
     }
 }

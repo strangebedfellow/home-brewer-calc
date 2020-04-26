@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-
 import convertToPlato from './convertToPlato';
 
 export default class RefractometerCorrection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ob: 0,
-            fb: 0,
+            ob: 12,
+            fb: 6,
             formula: false
         }
     }
@@ -27,19 +25,18 @@ export default class RefractometerCorrection extends Component {
         const { formula } = this.state;
 
         return <>
-                <div className='refractometer'>
-                    <form onSubmit={this.handleSubmit}>
-                        <h1>Korekta odczytu refraktometru</h1>
-                        <p>Gęstość początkowa (BRIX)</p>
-                        <input name='ob' type='number' step="0.01" onChange={this.handleInput}></input>
-                        <p>Gęstość końcowa (BRIX)</p>
-                        <input name='fb' type='number' step="0.01" onChange={this.handleInput}></input>
-                        <input type="submit" value="Oblicz" />
-                        {formula && <p>Gęstość końcowa (po korekcie) {convertToPlato(formula)} BLG</p>}
-                    </form>
-                </div>
+            <div className='alcohol'>
+                <form onSubmit={this.handleSubmit}>
+                    <p>Gęstość początkowa (BRIX)</p>
+                    <input name='ob' type='number' step="0.01" placeholder='12' onChange={this.handleInput}></input>
+                    <p>Gęstość końcowa (BRIX)</p>
+                    <input name='fb' type='number' step="0.01" placeholder='6' onChange={this.handleInput}></input>
+                    <input type="submit" value="Oblicz" className='btn-submit' />
+                    <p>Gęstość końcowa (po korekcie):</p>
+                    {formula && <p className='formula'> {convertToPlato(formula)} BLG</p>}
+                </form>
+            </div>
         </>
     }
 }
 
-ReactDOM.render(<RefractometerCorrection />, document.getElementById("app"));

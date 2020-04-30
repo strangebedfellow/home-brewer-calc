@@ -9,6 +9,36 @@ body {
   overflow-x: hidden;
   width: 100vw;
 
+  .alert {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.5);
+
+    span {
+      padding: 0.5rem;
+      text-align: center;
+      &:first-of-type {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .welcome {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-body {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
   #accordion {
     width: 100%;
 
@@ -22,6 +52,12 @@ body {
 
         .mb-0 {
           text-align: center;
+          &:hover {
+            color: yellow;
+            .btn {
+            color: yellow;
+            }
+          }
         }
       }
 
@@ -74,6 +110,10 @@ body {
 
 @media (max-width: 768px) {
   body {
+    .card-body {
+      flex-direction: column;
+    }
+
     .container {
       .beer-header {
         i {

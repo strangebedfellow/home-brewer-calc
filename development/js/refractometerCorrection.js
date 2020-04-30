@@ -25,7 +25,11 @@ export default class RefractometerCorrection extends Component {
         const { formula } = this.state;
 
         return <>
-            <div className='alcohol'>
+            <div className='formula-content'>
+                <div class="alert alert-warning" role="alert">
+                    <span>Refraktometr to wygodny przyrząd do pomiaru gęstości brzeczki.</span>
+                    <span>Bada on współczynnik załamania światła, jednak w przypadku (częściowo) przefermentowanej brzeczki alkohol zaburza prawidłowy odczyt, co wymaga korekcji.</span>
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     <p>Gęstość początkowa (BRIX)</p>
                     <input name='ob' type='number' step="0.01" placeholder='12' onChange={this.handleInput}></input>

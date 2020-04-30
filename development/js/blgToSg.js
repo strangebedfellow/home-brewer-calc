@@ -23,7 +23,7 @@ export default class BlgToSg extends Component {
 
         const { formula } = this.state;
         return <>
-            <div className='alcohol'>
+            <div className='formula-content'>
                 <form onSubmit={this.handleSubmit}>
                     <p>BLG</p>
                     <input name='blg' type='number' step="0.1" placeholder='12' onChange={this.handleInput}></input>

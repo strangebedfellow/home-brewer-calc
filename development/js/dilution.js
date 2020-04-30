@@ -24,7 +24,11 @@ export default class Dilution extends Component {
     render() {
         const { formula, worthVolume, currentGravity, targetGravity } = this.state;
         return <>
-            <div className='alcohol'>
+            <div className='formula-content'>
+                <div class="alert alert-warning" role="alert">
+                    <span>Gęstość brzeczki po zakończonym warzeniu jest zbyt wysoka?</span>
+                    <span>Żaden problem! Oblicz ilość wody jaką należy dolać do brzeczki, aby uzyskać zaplanowaną gęstość początkową.</span>
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor='worthVolume'>Ilość brzeczki (L)</label>
                     <input name='worthVolume' type='number' step="0.1" placeholder='20' onChange={this.handleInput} value={worthVolume}></input>

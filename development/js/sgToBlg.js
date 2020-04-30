@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import convertToPlato from './convertToPlato';
 
-export default class BlgToSg extends Component {
+export default class SgToBlg extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sg: 0,
+            sg: 1.048,
             formula: false
         }
     }
@@ -22,15 +22,13 @@ export default class BlgToSg extends Component {
     render() {
         const { formula } = this.state;
         return <>
-            <div className='alcohol'>
+            <div className='formula-content'>
                 <form onSubmit={this.handleSubmit}>
-                    <h1>Konwerter jednostek gęstości</h1>
-                    <h2>SG</h2>
+                    <p>SG</p>
                     <input name='sg' type='number' step="0.001" placeholder='1,048' onChange={this.handleInput}></input>
-                    <input type="submit" value="Oblicz" />
-                    {formula && <>
-                        <p>BLG: {formula} </p>
-                    </>}
+                    <input type="submit" value="Oblicz" className='btn-submit' />
+                    <p>BLG:</p>
+                    {formula && <p className='formula'>{formula} </p>}
                 </form>
             </div>
         </>

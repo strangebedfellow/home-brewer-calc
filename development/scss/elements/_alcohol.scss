@@ -1,9 +1,15 @@
-.alcohol {
+.formula-content {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+
+  .alert {
+    text-align: center;
+    line-height: 1.5rem;
+  }
 
   h1 {
     font-size: 2em;

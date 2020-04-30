@@ -6,6 +6,7 @@ import Dilution from './dilution';
 import RefractometerCorrection from './refractometerCorrection';
 import CalculateAlc from './calculateAlc';
 import BlgToSg from './blgToSg';
+import SgToBlg from './sgToBlg';
 
 class App extends Component {
 
@@ -32,13 +33,20 @@ class App extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className='row welcome'>
+                        <div class="alert alert-dark" role="alert">
+                            <span>Witaj piwowarze domowy!</span>
+                            <span>Poniżej znajdziesz przydatne kalkulatory/przeliczniki, niezbędne w procesie warzenia piwa domowego.</span>
+                        </div>
+                    </div>
+
                     <div className='row'>
                         <div id="accordion">
                             <div className="card">
                                 {/* Korekta gęstości brzeczki */}
                                 <div className="card-header" id="headingOne">
                                     <h5 className="mb-0">
-                                        <button name={0} className="btn btn-link" onClick={(e) => this.handleClick(e)} data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <button name={0} className={active == 0 ? 'btn btn-link icon-active' : 'btn btn-link'} onClick={(e) => this.handleClick(e)} data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             Korekta gęstości brzeczki </button>
                                         <i className={active == 0 ? 'fas fa-angle-right rotate-down icon-active' : 'fas fa-angle-right'}></i>
                                     </h5>
@@ -53,7 +61,7 @@ class App extends Component {
                                 {/* Konwerter jednostek gęstości */}
                                 <div className="card-header" id="headingTwo">
                                     <h5 className="mb-0">
-                                        <button name={1} className="btn btn-link collapsed" onClick={(e) => this.handleClick(e)} data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <button name={1} className={active == 1 ? 'btn btn-link icon-active' : 'btn btn-link'} onClick={(e) => this.handleClick(e)} data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                             Konwerter jednostek gęstości</button>
                                         <i className={active == 1 ? 'fas fa-angle-right rotate-down icon-active' : 'fas fa-angle-right'}></i>
                                     </h5>
@@ -61,6 +69,7 @@ class App extends Component {
                                 <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                     <div className="card-body">
                                         <BlgToSg />
+                                        <SgToBlg />
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +77,7 @@ class App extends Component {
                                 {/* Oblicz zawartość alkoholu w piwie */}
                                 <div className="card-header" id="headingThree">
                                     <h5 className="mb-0">
-                                        <button name={2} className="btn btn-link collapsed" onClick={(e) => this.handleClick(e)} data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <button name={2} className={active == 2 ? 'btn btn-link icon-active' : 'btn btn-link'} onClick={(e) => this.handleClick(e)} data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                             Oblicz zawartość alkoholu w piwie</button>
                                         <i className={active == 2 ? 'fas fa-angle-right rotate-down icon-active' : 'fas fa-angle-right'}></i>
                                     </h5>
@@ -83,7 +92,7 @@ class App extends Component {
                                 {/* Korekta odczytu refraktometru */}
                                 <div className="card-header" id="headingFour">
                                     <h5 className="mb-0">
-                                        <button name={3} className="btn btn-link collapsed" onClick={(e) => this.handleClick(e)} data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        <button name={3} className={active == 3 ? 'btn btn-link icon-active' : 'btn btn-link'} onClick={(e) => this.handleClick(e)} data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                             Korekta odczytu refraktometru</button>
                                         <i className={active == 3 ? 'fas fa-angle-right rotate-down icon-active' : 'fas fa-angle-right'}></i>
                                     </h5>

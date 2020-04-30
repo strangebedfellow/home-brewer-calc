@@ -28,7 +28,7 @@ export default class CalculateAlc extends Component {
     render() {
         const { formula, fermentationDegree } = this.state;
         return <>
-            <div className='alcohol'>
+            <div className='formula-content'>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Gęstość początkowa (BLG)</h2>
                     <input name='og' type='number' step="0.01" placeholder='12' onChange={this.handleInput}></input>

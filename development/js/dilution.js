@@ -14,6 +14,12 @@ export default class Dilution extends Component {
     handleInput = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     }
+    // increment = () => {
+    //     this.setState({ worthVolume: parseInt(this.state.worthVolume) + 1 });
+    // }
+    // decrement = () => {
+    //     this.setState({ worthVolume: parseInt(this.state.worthVolume) - 1 });
+    // }
 
     handleSubmit = e => {
         e.preventDefault();
@@ -31,11 +37,13 @@ export default class Dilution extends Component {
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor='worthVolume'>Ilość brzeczki (L)</label>
-                    <input name='worthVolume' type='number' step="0.1" placeholder='20' onChange={this.handleInput} value={worthVolume}></input>
+                    {/* <button onClick={this.increment}>+</button> */}
+                    <input name='worthVolume' type='number' step="0.1" placeholder='20' onChange={this.handleInput}></input>
+                    {/* <button onClick={this.decrement}>-</button> */}
                     <label htmlFor='currentGravity'>Obecna gęstość (BLG)</label>
-                    <input name='currentGravity' type='number' step="0.1" placeholder='16' onChange={this.handleInput} value={currentGravity}></input>
+                    <input name='currentGravity' type='number' step="0.1" placeholder='16' onChange={this.handleInput}></input>
                     <label htmlFor='targetGravity'>Oczekiwana gęstość (BLG)</label>
-                    <input name='targetGravity' type='number' step="0.1" placeholder='12' onChange={this.handleInput} value={targetGravity}></input>
+                    <input name='targetGravity' type='number' step="0.1" placeholder='12' onChange={this.handleInput}></input>
                     <input type="submit" value="Oblicz" className='btn-submit' />
                     <p>Ilość wody, którą należy dodać do brzeczki:</p>
                     {formula && <p className='formula'>{formula} L</p>}

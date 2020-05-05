@@ -52,7 +52,31 @@
     text-align: center;
 
     input {
+      &::placeholder {
+        color: rgba(255, 255, 0, 0.5);
+      }
+
+      &:focus::-webkit-input-placeholder {
+        color: transparent;
+      }
+
       margin: 1rem;
+      border: 0;
+      background-color: transparent;
+      border-bottom: 1px solid white;
+      //width: 20%;
+      color: yellow;
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+      padding-top: 2rem;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
   }
 }

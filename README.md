@@ -1,7 +1,9 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [Demo](#setup)
+* [Project status](#project-status)
+* [Setup](#setup)
+* [Demo](#demo)
 
 ## General info
 Application contains converters and calculations, essential for every home brewer in the brewing process.
@@ -12,6 +14,21 @@ Project is created with:
 * React: 16.8.4
 * Bootstrap: 4.4.1
 * SASS
+
+## Project status
+Project is being developed.
+Future plans:
+- Add more converters
+- Improve UX
+
+## Setup
+To run this project, install it locally using npm:
+
+```
+$ npm install
+$ npm start
+$ Project is running at http://localhost:3001/
+```
 	
-## DEMO
+## Demo
 Live demo: [pajor.info.pl/hbc](http://pajor.info.pl/hbc/)

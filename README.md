@@ -6,8 +6,8 @@
 * [Demo](#demo)
 
 ## General info
-Application contains converters and calculations, essential for every home brewer in the brewing process.
-	
+Project contains converters and calculations, essential for every home brewer in the brewing process.
+
 ## Technologies
 Project is created with:
 * JavaScript

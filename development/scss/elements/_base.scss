@@ -55,7 +55,7 @@ body {
           &:hover {
             color: yellow;
             .btn {
-            color: yellow;
+              color: yellow;
             }
           }
         }
@@ -99,10 +99,12 @@ body {
         background-image: url("/img/beer-253791_1920.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-        font-size: 5rem;
+        font-size: 6rem;
         font-family: "Titillium Web", sans-serif;
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
+        padding: 1rem;
+        text-align: center;
       }
     }
   }
@@ -120,7 +122,7 @@ body {
           font-size: 1rem;
         }
         h1 {
-          font-size: 1.5rem;
+          font-size: 3rem;
         }
       }
     }

@@ -15,16 +15,19 @@ export default class Dilution extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
     // increment = () => {
-    //     this.setState({ worthVolume: parseInt(this.state.worthVolume) + 1 });
+    //     this.setState({ worthVolume: parseFloat(this.state.worthVolume) + 0.5 });
     // }
     // decrement = () => {
-    //     this.setState({ worthVolume: parseInt(this.state.worthVolume) - 1 });
+    //     this.setState({ worthVolume: parseFloat(this.state.worthVolume) - 0.5 });
     // }
 
     handleSubmit = e => {
         e.preventDefault();
         const { worthVolume, currentGravity, targetGravity } = this.state;
-        this.setState({ formula: ((worthVolume * currentGravity / targetGravity) - worthVolume).toFixed(2) });
+        // const isworthValid = currentGravity == targetGravity;
+        // isworthValid ? alert("Obecna gęstość musi być wyższa od oczekiwanej gęstości!") : 
+        this.setState({ formula: ((worthVolume * currentGravity / targetGravity) - worthVolume).toFixed(2) });;
+
     }
 
     render() {

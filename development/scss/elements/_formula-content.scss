@@ -5,6 +5,18 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
+ 
+
+  .visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 500ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+   // transition: visibility 0s 500ms, opacity 1s ease-out;
+  }
 
   .alert {
     text-align: center;
@@ -28,24 +40,47 @@
     line-height: 1.2rem;
   }
 
-  .formula {
+  .formula,
+  .no-formula {
     padding: 1rem;
     color: yellow;
     font-size: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 0, 0.1);
-    width: 100%;
+    //border-bottom: 1px solid rgba(255, 255, 0, 0.1);
+    width: 40%;
+    text-align: center;
+    background-color: rgba(218, 218, 218, 0.1);
+    margin-top: 1rem;
+    border-radius: 10px;
+
   }
+
+  .no-formula {
+    color: rgba(255, 255, 0, 0.1);
+  }
+
+  .formula-title {
+    font-size: 1.2rem;
+    background-color: rgba(255, 255, 0, 0.1);
+    width: 60%;
+    text-align: center;
+    margin-top: 2rem;
+    
+  }
+
+  // .no-formula-yet {
+  //   color: rgba(255, 255, 0, 0.1);
+  // }
 
   .btn-submit {
     color: yellow;
-    border: 2px solid yellow;
+    border: 1px solid rgba(255, 255, 0, 0.1);
     background-color: transparent;
+    border-radius: 10px;
+
     padding: 0.8rem;
-    transition: all 0.1s ease;
+    transition: all 0.05s ease;
     &:hover {
-      background-color: rgb(255, 255, 0);
-      color: rgb(70, 67, 67);
-      font-weight: bold;
+      background-color: rgba(255, 255, 0, 0.025);
     }
   }
 
@@ -53,12 +88,15 @@
     @include flex-column;
     align-items: center;
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+
 
     input {
       &::placeholder {
-        color: rgba(255, 255, 0, 0.5);
+        color: rgba(255, 255, 0, 0.1);
+        font-weight: bold;
       }
-
       &:focus::-webkit-input-placeholder {
         color: transparent;
       }
@@ -70,6 +108,7 @@
       //width: 20%;
       color: yellow;
       text-align: center;
+      font-weight: bold;
     }
     label {
       font-weight: bold;
@@ -80,6 +119,14 @@
     input[type="number"]::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
+    }
+  }
+
+  .light-up {
+    &::placeholder {
+      color: rgba(255, 255, 0, 1);
+      transition: color 500ms ease-out;
+
     }
   }
 }

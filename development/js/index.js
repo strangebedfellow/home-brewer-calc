@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import '../scss/main.scss';
+import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+
 
 import Dilution from './dilution';
 import RefractometerCorrection from './refractometerCorrection';
@@ -19,6 +21,7 @@ class App extends Component {
 
     handleClick = (e) => {
         this.setState({ active: [e.target.name] });
+        scroll.scrollToBottom();
     }
 
     render() {
@@ -61,8 +64,8 @@ class App extends Component {
                                 {/* Konwerter jednostek gęstości */}
                                 <div className="card-header" id="headingTwo">
                                     <h5 className="mb-0">
-                                        <button name={1} className={active == 1 ? 'btn btn-link icon-active' : 'btn btn-link'} onClick={(e) => this.handleClick(e)} data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Konwerter jednostek gęstości</button>
+                                        {<button name={1} className={active == 1 ? 'btn btn-link icon-active' : 'btn btn-link'} onClick={(e) => this.handleClick(e)} data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Konwerter jednostek gęstości</button>}
                                         <i className={active == 1 ? 'fas fa-angle-right rotate-down icon-active' : 'fas fa-angle-right'}></i>
                                     </h5>
                                 </div>

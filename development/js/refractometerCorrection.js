@@ -32,13 +32,14 @@ export default class RefractometerCorrection extends Component {
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <p>Gęstość początkowa (BRIX)</p>
-                    <input name='ob' type='number' step="0.01" placeholder='12' onChange={this.handleInput}></input>
+                    <input name='ob' type='number' step="0.01" placeholder='12' onChange={this.handleInput} className={formula ? 'light-up' : ''}></input>
                     <p>Gęstość końcowa (BRIX)</p>
-                    <input name='fb' type='number' step="0.01" placeholder='6' onChange={this.handleInput}></input>
+                    <input name='fb' type='number' step="0.01" placeholder='6' onChange={this.handleInput} className={formula ? 'light-up' : ''}></input>
                     <input type="submit" value="Oblicz" className='btn-submit' />
-                    <p>Gęstość końcowa (po korekcie):</p>
-                    {formula && <p className='formula'> {convertToPlato(formula)} BLG</p>}
                 </form>
+                <p className='formula-title'>Gęstość końcowa (po korekcie):</p>
+                {/* {formula && <p className='formula'> {convertToPlato(formula)} BLG</p>} */}
+                <p className={formula ? 'formula visible' : 'no-formula hidden'}>{formula ? <span>{convertToPlato(formula)} BLG</span> : <span>2.92 BLG</span>}</p>
             </div>
         </>
     }

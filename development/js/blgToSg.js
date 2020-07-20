@@ -26,11 +26,12 @@ export default class BlgToSg extends Component {
             <div className='formula-content'>
                 <form onSubmit={this.handleSubmit}>
                     <p>BLG</p>
-                    <input name='blg' type='number' step="0.1" placeholder='12' onChange={this.handleInput}></input>
+                    <input name='blg' type='number' step="0.1" placeholder='12' onChange={this.handleInput} className={formula ? 'light-up' : ''}></input>
                     <input type="submit" value="Oblicz" className='btn-submit' />
-                    <p>SG (Specific Gravity):</p>
-                    {formula && <p className='formula'>{formula} </p>}
                 </form>
+                <p className='formula-title'>SG (Specific Gravity)</p>
+                {/* {formula && <p className='formula'>{formula} </p>} */}
+                <p className={formula ? 'formula visible' : 'no-formula hidden'}>{formula ? formula : '1.048'}</p>
             </div>
         </>
     }

@@ -41,16 +41,19 @@ export default class Dilution extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor='worthVolume'>Ilość brzeczki (L)</label>
                     {/* <button onClick={this.increment}>+</button> */}
-                    <input name='worthVolume' type='number' step="0.1" placeholder='20' onChange={this.handleInput}></input>
+                    <input name='worthVolume' type='number' step="0.1" placeholder='20' onChange={this.handleInput} className={formula ? 'light-up': ''}></input>
                     {/* <button onClick={this.decrement}>-</button> */}
                     <label htmlFor='currentGravity'>Obecna gęstość (BLG)</label>
-                    <input name='currentGravity' type='number' step="0.1" placeholder='16' onChange={this.handleInput}></input>
+                    <input name='currentGravity' type='number' step="0.1" placeholder='16' onChange={this.handleInput} className={formula ? 'light-up': ''}></input>
                     <label htmlFor='targetGravity'>Oczekiwana gęstość (BLG)</label>
-                    <input name='targetGravity' type='number' step="0.1" placeholder='12' onChange={this.handleInput}></input>
+                    <input name='targetGravity' type='number' step="0.1" placeholder='12' onChange={this.handleInput} className={formula ? 'light-up': ''}></input>
                     <input type="submit" value="Oblicz" className='btn-submit' />
-                    <p>Ilość wody, którą należy dodać do brzeczki:</p>
-                    {formula && <p className='formula'>{formula} L</p>}
+                   
+
                 </form>
+                <p className='formula-title'>Ilość wody, którą należy dodać do brzeczki:</p>
+                    {/* {formula && <p className='formula'>{formula} L</p>}  */}
+                    <p className={formula ? 'formula visible' : 'no-formula hidden'}>{formula ? `${formula} L`: '6.67 L'}</p>
             </div>
         </>
     }

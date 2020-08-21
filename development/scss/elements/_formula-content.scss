@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
- 
 
   .visible {
     visibility: visible;
@@ -15,7 +14,7 @@
   .hidden {
     visibility: hidden;
     opacity: 0;
-   // transition: visibility 0s 500ms, opacity 1s ease-out;
+    // transition: visibility 0s 500ms, opacity 1s ease-out;
   }
 
   .alert {
@@ -45,13 +44,11 @@
     padding: 1rem;
     color: yellow;
     font-size: 2rem;
-    //border-bottom: 1px solid rgba(255, 255, 0, 0.1);
     width: 40%;
     text-align: center;
     background-color: rgba(218, 218, 218, 0.1);
     margin-top: 1rem;
     border-radius: 10px;
-
   }
 
   .no-formula {
@@ -64,7 +61,6 @@
     width: 60%;
     text-align: center;
     margin-top: 2rem;
-    
   }
 
   // .no-formula-yet {
@@ -90,7 +86,6 @@
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 10px;
-
 
     input {
       &::placeholder {
@@ -126,7 +121,19 @@
     &::placeholder {
       color: rgba(255, 255, 0, 1);
       transition: color 500ms ease-out;
+    }
+  }
+}
 
+@media (max-width: 768px) {
+  .formula-content {
+    .formula-title {
+      width: 100%;
+      font-size: initial;
+    }
+    .formula,
+    .no-formula {
+      width: 100%;
     }
   }
 }

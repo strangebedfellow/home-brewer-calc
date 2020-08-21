@@ -47,9 +47,11 @@ body {
       background-color: transparent;
       border: 0;
       border-color: rgba(255, 255, 255, 0.05);
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
       .card-header {
         border-color: rgba(255, 255, 255, 0.05);
-
         .mb-0 {
           text-align: center;
           &:hover {

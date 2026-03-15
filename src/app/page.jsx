@@ -22,8 +22,7 @@ export default async function Home() {
             <ThemeToggle initialMode={initialMode} />
           </div>
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-(--text-muted) md:text-base">
-            Zmodernizowana wersja aplikacji: szybsza, lzejsza i gotowa na dalszy rozwoj. Wszystkie wzory obliczeniowe
-            zostaly zachowane 1:1, a warstwa interfejsu zostala przebudowana pod nowoczesny stack Next.js + Tailwind.
+            Wa<span className="font-bold text-[18px]">rz i rz</span>ądź...
           </p>
         </section>
 

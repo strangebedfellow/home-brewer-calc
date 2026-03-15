@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+:root {
+  --bg-base: #0b111a;
+  --text-primary: #ecf3ff;
+  --text-muted: #9fb2ca;
+  --surface-1: #101b2b;
+  --surface-2: #142238;
+  --hero-surface: #17263d;
+  --border: #2d4567;
+  --border-soft: #223754;
+  --accent: #6be2bf;
+  --accent-contrast: #07211f;
+  --hero-left: #2866ff;
+  --hero-right: #0ea5e9;
+  --hero-shadow: rgba(2, 10, 25, 0.45);
+  --surface-shadow: rgba(2, 10, 25, 0.32);
+}
+
+[data-theme="light"] {
+  --bg-base: #fff7ea;
+  --text-primary: #2f1c08;
+  --text-muted: #6b4b2a;
+  --surface-1: rgba(255, 255, 255, 0.85);
+  --surface-2: #fffaf0;
+  --hero-surface: linear-gradient(135deg, rgba(255, 229, 176, 0.9), rgba(255, 239, 214, 0.82));
+  --border: #e9cfaa;
+  --border-soft: #efd8b6;
+  --accent: #8f2d00;
+  --accent-contrast: #fff6e9;
+  --hero-left: #f59e0b;
+  --hero-right: #f97316;
+  --hero-shadow: rgba(89, 50, 10, 0.22);
+  --surface-shadow: rgba(89, 50, 10, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body), sans-serif;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(59, 130, 246, 0.28) 0%, rgba(59, 130, 246, 0) 42%),
+    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.22) 0%, rgba(14, 165, 233, 0) 38%),
+    linear-gradient(145deg, #060b12 0%, #121b2a 45%, #0b1626 100%);
+}
+
+[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 20% 10%, #ffd89a 0%, rgba(255, 216, 154, 0) 45%),
+    radial-gradient(circle at 80% 20%, #ffc78f 0%, rgba(255, 199, 143, 0) 42%),
+    linear-gradient(135deg, #fff8ec 0%, #f7e8d4 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hero-glow {
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  height: 16rem;
+  width: 16rem;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.55;
+}
+
+.theme-chip {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.5rem 0.75rem;
+  transition: all 120ms ease;
+}
+
+.theme-chip:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.theme-chip-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.hero-glow-left {
+  left: -6rem;
+  top: -5rem;
+  background: var(--hero-left);
+  animation: drift-left 8s ease-in-out infinite;
+}
+
+.hero-glow-right {
+  right: -5rem;
+  top: 2rem;
+  background: var(--hero-right);
+  animation: drift-right 9s ease-in-out infinite;
+}
+
+@keyframes drift-left {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(14px, 10px);
+  }
+}
+
+@keyframes drift-right {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-14px, 12px);
+  }
+}

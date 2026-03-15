@@ -1,34 +1,45 @@
-## Table of contents
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Project status](#project-status)
-* [Setup](#setup)
-* [Demo](#demo)
+# Home Brewer Calculator
 
-## General info
-Project contains converters and calculations, essential for every home brewer in the brewing process.
+Nowoczesna wersja kalkulatora dla piwowarow domowych oparta o Next.js i Tailwind CSS.
 
-## Technologies
-Project is created with:
-* JavaScript
-* React: 16.8.4
-* Bootstrap: 4.4.1
-* SASS
+## Co zostalo zmienione
 
-## Project status
-Project is being developed.
-Future plans:
-- Add more converters
-- Improve UX
+- Migracja z Webpack + React 16 do Next.js (App Router)
+- Zamiana komponentow klasowych na komponenty funkcyjne z `useState`
+- Przeniesienie wzorow do warstwy `src/lib` (bez zmiany logiki obliczen)
+- Wymiana Bootstrap + SCSS na Tailwind CSS
+- Nowy, bardziej nowoczesny layout i lepsza struktura kodu
 
-## Setup
-To run this project, install it locally using npm:
+## Stack
 
+- Next.js (latest)
+- React (latest)
+- Tailwind CSS (latest)
+
+## Uruchomienie
+
+```bash
+npm install
+npm run dev
 ```
-$ npm install
-$ npm start
-$ Project is running at http://localhost:3001/
+
+Aplikacja bedzie dostepna pod adresem `http://localhost:3000`.
+
+## Produkcja
+
+```bash
+npm run build
+npm start
 ```
-	
-## Demo
-Live demo: [pajor.info.pl/hbc](http://pajor.info.pl/hbc/)
+
+## Testy
+
+```bash
+npm run test
+```
+
+## Struktura
+
+- `src/app` - layout, strona glowna, style globalne
+- `src/components` - komponenty UI i kalkulatory
+- `src/lib` - funkcje konwersji i wzory

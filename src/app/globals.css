@@ -6,6 +6,7 @@
   --text-muted: #9fb2ca;
   --surface-1: #101b2b;
   --surface-2: #142238;
+  --surface-3: #222222;
   --hero-surface: #17263d;
   --border: #2d4567;
   --border-soft: #223754;
@@ -23,7 +24,12 @@
   --text-muted: #6b4b2a;
   --surface-1: rgba(255, 255, 255, 0.85);
   --surface-2: #fffaf0;
-  --hero-surface: linear-gradient(135deg, rgba(255, 229, 176, 0.9), rgba(255, 239, 214, 0.82));
+  --surface-3: #fff;
+  --hero-surface: linear-gradient(
+    135deg,
+    rgba(255, 229, 176, 0.9),
+    rgba(255, 239, 214, 0.82)
+  );
   --border: #e9cfaa;
   --border-soft: #efd8b6;
   --accent: #8f2d00;
@@ -47,8 +53,16 @@ body {
 body {
   font-family: var(--font-body), sans-serif;
   background:
-    radial-gradient(circle at 15% 12%, rgba(59, 130, 246, 0.28) 0%, rgba(59, 130, 246, 0) 42%),
-    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.22) 0%, rgba(14, 165, 233, 0) 38%),
+    radial-gradient(
+      circle at 15% 12%,
+      rgba(59, 130, 246, 0.28) 0%,
+      rgba(59, 130, 246, 0) 42%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(14, 165, 233, 0.22) 0%,
+      rgba(14, 165, 233, 0) 38%
+    ),
     linear-gradient(145deg, #060b12 0%, #121b2a 45%, #0b1626 100%);
 }
 
@@ -69,7 +83,7 @@ h6 {
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .hero-glow {

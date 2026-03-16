@@ -1,12 +1,12 @@
 # Home Brewer Calculator
 
-Nowoczesna wersja kalkulatora dla piwowarow domowych oparta o Next.js i Tailwind CSS.
+Nowoczesna wersja kalkulatora dla piwowarów domowych oparta o Next.js i Tailwind CSS.
 
-## Co zostalo zmienione
+## Co zostało zmienione
 
 - Migracja z Webpack + React 16 do Next.js (App Router)
-- Zamiana komponentow klasowych na komponenty funkcyjne z `useState`
-- Przeniesienie wzorow do warstwy `src/lib` (bez zmiany logiki obliczen)
+- Zamiana komponentów klasowych na komponenty funkcyjne z `useState`
+- Przeniesienie wzorów do warstwy `src/lib` (bez zmiany logiki obliczeń)
 - Wymiana Bootstrap + SCSS na Tailwind CSS
 - Nowy, bardziej nowoczesny layout i lepsza struktura kodu
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Aplikacja bedzie dostepna pod adresem `http://localhost:3000`.
+Aplikacja będzie dostępna pod adresem `http://localhost:3000`.
 
 ## Produkcja
 
@@ -40,6 +40,6 @@ npm run test
 
 ## Struktura
 
-- `src/app` - layout, strona glowna, style globalne
+- `src/app` - layout, strona główna, style globalne
 - `src/components` - komponenty UI i kalkulatory
 - `src/lib` - funkcje konwersji i wzory

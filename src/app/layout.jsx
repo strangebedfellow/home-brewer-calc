@@ -69,7 +69,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata = {
   title: "Home Brewer Calculator",
-  description: "Nowoczesny zestaw kalkulatorow dla piwowarow domowych.",
+  description: "Nowoczesny zestaw kalkulatorów dla piwowarów domowych.",
 };
 
 export default function RootLayout({ children }) {

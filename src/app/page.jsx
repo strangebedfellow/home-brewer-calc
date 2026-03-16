@@ -5,7 +5,10 @@ import ThemeToggle from "../components/ThemeToggle";
 export default async function Home() {
   const cookieStore = await cookies();
   const cookieMode = cookieStore.get("hbc-theme-mode")?.value;
-  const initialMode = cookieMode === "dark" || cookieMode === "light" || cookieMode === "system" ? cookieMode : "system";
+  const initialMode =
+    cookieMode === "dark" || cookieMode === "light" || cookieMode === "system"
+      ? cookieMode
+      : "system";
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-(--bg-base) text-(--text-primary)">
@@ -16,8 +19,12 @@ export default async function Home() {
         <section className="rounded-4xl border border-(--border-soft) bg-(--hero-surface) p-7 shadow-[0_20px_80px_var(--hero-shadow)] backdrop-blur-sm md:p-10">
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-(--text-muted)">Home Brewer Toolkit</p>
-              <h1 className="mt-3 text-3xl font-bold leading-tight text-(--text-primary) md:text-5xl">Kalkulatory i przeliczniki dla piwowara domowego</h1>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-(--text-muted)">
+                Home Brewer Toolkit
+              </p>
+              <h1 className="mt-3 text-3xl font-bold leading-tight text-(--text-primary) md:text-5xl">
+                Kalkulatory i przeliczniki dla piwowara domowego
+              </h1>
             </div>
             <ThemeToggle initialMode={initialMode} />
           </div>
@@ -30,6 +37,21 @@ export default async function Home() {
           <Calculators />
         </section>
       </div>
+      <footer className="border-t border-solid border-(--border-soft) bg-(--surface-2) px-5 py-6 shadow-[0_8px_28px_var(--surface-shadow)] backdrop-blur-sm md:px-7">
+        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.22em] text-(--text-muted)">
+              Home Brewer Toolkit
+            </p>
+            <p className="mt-2 text-sm text-(--text-muted)">
+              Narzędzie dla piwowarów domowych.
+            </p>
+          </div>
+          <div className="text-sm text-(--text-muted) md:text-right">
+            <p>Built with Next.js + Tailwind</p>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

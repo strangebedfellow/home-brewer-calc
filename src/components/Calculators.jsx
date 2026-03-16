@@ -45,12 +45,12 @@ function DilutionCalculator() {
   return (
     <div className="space-y-4">
       <p className="text-sm leading-relaxed text-(--text-muted)">
-        Gestosc brzeczki po zakonczeniu warzenia jest zbyt wysoka? Oblicz ilosc wody, jaka nalezy dolac, aby uzyskac
-        zaplanowana gestosc poczatkowa.
+        Gęstość brzeczki po zakończeniu warzenia jest zbyt wysoka? Oblicz ilość wody, jaką należy dolać, aby uzyskać
+        zaplanowaną gęstość początkową.
       </p>
       <form onSubmit={onSubmit} className="grid gap-3 md:grid-cols-3">
         <InputField
-          label="Ilosc brzeczki (L)"
+          label="Ilość brzeczki (L)"
           name="worthVolume"
           step="0.1"
           placeholder="20"
@@ -58,7 +58,7 @@ function DilutionCalculator() {
           onChange={(event) => setWorthVolume(event.target.value)}
         />
         <InputField
-          label="Obecna gestosc (BLG)"
+          label="Obecna gęstość (BLG)"
           name="currentGravity"
           step="0.1"
           placeholder="16"
@@ -66,7 +66,7 @@ function DilutionCalculator() {
           onChange={(event) => setCurrentGravity(event.target.value)}
         />
         <InputField
-          label="Oczekiwana gestosc (BLG)"
+          label="Oczekiwana gęstość (BLG)"
           name="targetGravity"
           step="0.1"
           placeholder="12"
@@ -80,7 +80,7 @@ function DilutionCalculator() {
           Oblicz
         </button>
       </form>
-      <ResultBlock title="Ilosc wody do dodania" value={`${result} L`} />
+      <ResultBlock title="Ilość wody do dodania" value={`${result} L`} />
     </div>
   );
 }
@@ -153,7 +153,7 @@ function AlcoholCalculator() {
     <div className="space-y-4">
       <form onSubmit={onSubmit} className="grid gap-3 md:grid-cols-2">
         <InputField
-          label="Gestosc poczatkowa (BLG)"
+          label="Gęstość początkowa (BLG)"
           name="og"
           step="0.01"
           placeholder="12"
@@ -161,7 +161,7 @@ function AlcoholCalculator() {
           onChange={(event) => setOg(event.target.value)}
         />
         <InputField
-          label="Gestosc koncowa (BLG)"
+          label="Gęstość końcowa (BLG)"
           name="fg"
           step="0.01"
           placeholder="3"
@@ -176,9 +176,9 @@ function AlcoholCalculator() {
         </button>
       </form>
       <div className="grid gap-3 md:grid-cols-3">
-        <ResultBlock title="ABV (objetosciowo)" value={`${result.abv} %`} />
+        <ResultBlock title="ABV (objętościowo)" value={`${result.abv} %`} />
         <ResultBlock title="ABW (wagowo)" value={`${result.abw} %`} />
-        <ResultBlock title="Stopien odfermentowania" value={`${result.fermentationDegree} %`} />
+        <ResultBlock title="Stopień odfermentowania" value={`${result.fermentationDegree} %`} />
       </div>
     </div>
   );
@@ -198,12 +198,12 @@ function RefractometerCalculator() {
   return (
     <div className="space-y-4">
       <p className="text-sm leading-relaxed text-(--text-muted)">
-        Refraktometr mierzy wspolczynnik zalamania swiatla. Przy fermentacji alkohol zaburza odczyt, dlatego wynik
+        Refraktometr mierzy współczynnik załamania światła. Przy fermentacji alkohol zaburza odczyt, dlatego wynik
         wymaga korekty.
       </p>
       <form onSubmit={onSubmit} className="grid gap-3 md:grid-cols-2">
         <InputField
-          label="Gestosc poczatkowa (BRIX)"
+          label="Gęstość początkowa (BRIX)"
           name="ob"
           step="0.01"
           placeholder="12"
@@ -211,7 +211,7 @@ function RefractometerCalculator() {
           onChange={(event) => setOb(event.target.value)}
         />
         <InputField
-          label="Gestosc koncowa (BRIX)"
+          label="Gęstość końcowa (BRIX)"
           name="fb"
           step="0.01"
           placeholder="6"
@@ -225,7 +225,7 @@ function RefractometerCalculator() {
           Oblicz
         </button>
       </form>
-      <ResultBlock title="Gestosc koncowa po korekcie" value={`${result} BLG`} />
+      <ResultBlock title="Gęstość końcowa po korekcie" value={`${result} BLG`} />
     </div>
   );
 }
@@ -239,13 +239,13 @@ export default function Calculators() {
 
   return (
     <div className="grid gap-4">
-      <AccordionItem index={0} activeIndex={activeIndex} onToggle={toggle} title="Korekta gestosci brzeczki">
+      <AccordionItem index={0} activeIndex={activeIndex} onToggle={toggle} title="Korekta gęstości brzeczki">
         <DilutionCalculator />
       </AccordionItem>
-      <AccordionItem index={1} activeIndex={activeIndex} onToggle={toggle} title="Konwerter jednostek gestosci">
+      <AccordionItem index={1} activeIndex={activeIndex} onToggle={toggle} title="Konwerter jednostek gęstości">
         <DensityConverter />
       </AccordionItem>
-      <AccordionItem index={2} activeIndex={activeIndex} onToggle={toggle} title="Oblicz zawartosc alkoholu w piwie">
+      <AccordionItem index={2} activeIndex={activeIndex} onToggle={toggle} title="Oblicz zawartość alkoholu w piwie">
         <AlcoholCalculator />
       </AccordionItem>
       <AccordionItem index={3} activeIndex={activeIndex} onToggle={toggle} title="Korekta odczytu refraktometru">

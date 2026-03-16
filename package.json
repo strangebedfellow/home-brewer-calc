@@ -3,9 +3,9 @@
   "description": "Home brewer Calc",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "node app.js",
     "lint": "next lint",
     "test": "vitest run",
     "test:watch": "vitest"

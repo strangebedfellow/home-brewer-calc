@@ -1,5 +1,8 @@
 import { Bricolage_Grotesque, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 const themeInitScript = `(function(){
   var STORAGE_KEY = "hbc-theme-mode";

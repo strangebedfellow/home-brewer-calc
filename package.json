@@ -15,6 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "next": "latest",
+    "primeicons": "latest",
+    "primereact": "latest",
     "react": "latest",
     "react-dom": "latest"
   },

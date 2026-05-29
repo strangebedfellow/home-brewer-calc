@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import AccordionItem from "./AccordionItem";
-import { calculateAbvMetrics, calculateDilution, calculateRefractometerCorrection } from "../lib/calculators";
+import { InputText } from "primereact/inputtext";
+import { Slider } from "primereact/slider";
+import {
+  calculateAbvMetrics,
+  calculateDilution,
+  calculateRefractometerCorrection,
+} from "../lib/calculators";
 import { convertToPlato, convertToSg } from "../lib/conversions";
 
 function InputField({ label, name, step, placeholder, value, onChange }) {
@@ -25,54 +31,150 @@ function InputField({ label, name, step, placeholder, value, onChange }) {
 function ResultBlock({ title, value }) {
   return (
     <div className="rounded-xl border border-(--border) bg-(--surface-1) px-4 py-3">
-      <p className="text-xs uppercase tracking-wide text-(--text-muted)">{title}</p>
-      <p className="mt-1 text-xl font-semibold text-(--text-primary)">{value}</p>
+      <p className="text-xs uppercase tracking-wide text-(--text-muted)">
+        {title}
+      </p>
+      <p className="mt-1 text-xl font-semibold text-(--text-primary)">
+        {value}
+      </p>
     </div>
   );
 }
 
 function DilutionCalculator() {
-  const [worthVolume, setWorthVolume] = useState("20");
-  const [currentGravity, setCurrentGravity] = useState("16");
-  const [targetGravity, setTargetGravity] = useState("12");
+  const [worthVolume, setWorthVolume] = useState(20);
+  const [currentGravity, setCurrentGravity] = useState(16);
+  const [targetGravity, setTargetGravity] = useState(12);
+  const [worthVolumeInput, setWorthVolumeInput] = useState("20");
+  const [currentGravityInput, setCurrentGravityInput] = useState("16");
+  const [targetGravityInput, setTargetGravityInput] = useState("12");
   const [result, setResult] = useState("6.67");
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  const parseInputNumber = (rawValue) => {
+    const normalized = rawValue.replace(",", ".");
+    const parsed = Number(normalized);
+    return Number.isFinite(parsed) ? parsed : null;
+  };
+
+  const handleTextChange = (setInput, setValue, min, max) => (event) => {
+    const raw = event.target.value;
+    setInput(raw);
+    const parsed = parseInputNumber(raw);
+    if (parsed !== null) {
+      setValue(clamp(parsed, min, max));
+    }
+  };
+
+  const handleSliderChange = (setInput, setValue, min, max) => (event) => {
+    const sliderValue = Number(event.value ?? min);
+    const normalizedValue = clamp(sliderValue, min, max);
+    setValue(normalizedValue);
+    setInput(String(normalizedValue));
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setResult(calculateDilution(Number(worthVolume), Number(currentGravity), Number(targetGravity)));
+    setResult(calculateDilution(worthVolume, currentGravity, targetGravity));
   };
 
   return (
     <div className="space-y-4">
       <p className="text-sm leading-relaxed text-(--text-muted)">
-        Gęstość brzeczki po zakończeniu warzenia jest zbyt wysoka? Oblicz ilość wody, jaką należy dolać, aby uzyskać
-        zaplanowaną gęstość początkową.
+        Gęstość brzeczki po zakończeniu warzenia jest zbyt wysoka? Oblicz ilość
+        wody, jaką należy dolać, aby uzyskać zaplanowaną gęstość początkową.
       </p>
       <form onSubmit={onSubmit} className="grid gap-3 md:grid-cols-3">
-        <InputField
-          label="Ilość brzeczki (L)"
-          name="worthVolume"
-          step="0.1"
-          placeholder="20"
-          value={worthVolume}
-          onChange={(event) => setWorthVolume(event.target.value)}
-        />
-        <InputField
-          label="Obecna gęstość (BLG)"
-          name="currentGravity"
-          step="0.1"
-          placeholder="16"
-          value={currentGravity}
-          onChange={(event) => setCurrentGravity(event.target.value)}
-        />
-        <InputField
-          label="Oczekiwana gęstość (BLG)"
-          name="targetGravity"
-          step="0.1"
-          placeholder="12"
-          value={targetGravity}
-          onChange={(event) => setTargetGravity(event.target.value)}
-        />
+        <label className="flex flex-col items-center gap-3 rounded-xl border border-(--border) bg-(--surface-1) p-4">
+          <span className="text-center text-sm font-medium text-(--text-muted)">
+            Ilość brzeczki (L)
+          </span>
+          <InputText
+            value={worthVolumeInput}
+            onChange={handleTextChange(
+              setWorthVolumeInput,
+              setWorthVolume,
+              5,
+              40,
+            )}
+            className="w-full"
+          />
+          <Slider
+            value={worthVolume}
+            onChange={handleSliderChange(
+              setWorthVolumeInput,
+              setWorthVolume,
+              5,
+              40,
+            )}
+            orientation="vertical"
+            min={5}
+            max={40}
+            step={0.1}
+            className="h-40"
+          />
+        </label>
+        <label className="flex flex-col items-center gap-3 rounded-xl border border-(--border) bg-(--surface-1) p-4">
+          <span className="text-center text-sm font-medium text-(--text-muted)">
+            Obecna gęstość (BLG)
+          </span>
+          <div className="flex gap-8">
+            <InputText
+              value={currentGravityInput}
+              onChange={handleTextChange(
+                setCurrentGravityInput,
+                setCurrentGravity,
+                0,
+                40,
+              )}
+              className="w-full"
+            />
+            <Slider
+              value={currentGravity}
+              onChange={handleSliderChange(
+                setCurrentGravityInput,
+                setCurrentGravity,
+                0,
+                40,
+              )}
+              orientation="vertical"
+              min={0}
+              max={40}
+              step={0.1}
+              className="h-40"
+            />
+          </div>
+        </label>
+        <label className="flex flex-col items-center gap-3 rounded-xl border border-(--border) bg-(--surface-1) p-4">
+          <span className="text-center text-sm font-medium text-(--text-muted)">
+            Oczekiwana gęstość (BLG)
+          </span>
+          <InputText
+            value={targetGravityInput}
+            onChange={handleTextChange(
+              setTargetGravityInput,
+              setTargetGravity,
+              0,
+              40,
+            )}
+            className="w-full"
+          />
+          <Slider
+            value={targetGravity}
+            onChange={handleSliderChange(
+              setTargetGravityInput,
+              setTargetGravity,
+              0,
+              40,
+            )}
+            orientation="vertical"
+            min={0}
+            max={40}
+            step={0.1}
+            className="h-40"
+          />
+        </label>
         <button
           type="submit"
           className="md:col-span-3 rounded-xl bg-(--accent) px-4 py-3 font-semibold text-(--accent-contrast) transition hover:opacity-90"
@@ -103,7 +205,10 @@ function DensityConverter() {
 
   return (
     <div className="grid gap-4 md:grid-cols-2">
-      <form onSubmit={onBlgSubmit} className="space-y-3 rounded-xl border border-(--border) bg-(--surface-1) p-4">
+      <form
+        onSubmit={onBlgSubmit}
+        className="space-y-3 rounded-xl border border-(--border) bg-(--surface-1) p-4"
+      >
         <InputField
           label="BLG"
           name="blg"
@@ -112,12 +217,18 @@ function DensityConverter() {
           value={blg}
           onChange={(event) => setBlg(event.target.value)}
         />
-        <button type="submit" className="w-full rounded-xl bg-(--accent) px-3 py-2 font-semibold text-(--accent-contrast) hover:opacity-90">
+        <button
+          type="submit"
+          className="w-full rounded-xl bg-(--accent) px-3 py-2 font-semibold text-(--accent-contrast) hover:opacity-90"
+        >
           Oblicz
         </button>
         <ResultBlock title="SG (Specific Gravity)" value={sgResult} />
       </form>
-      <form onSubmit={onSgSubmit} className="space-y-3 rounded-xl border border-(--border) bg-(--surface-1) p-4">
+      <form
+        onSubmit={onSgSubmit}
+        className="space-y-3 rounded-xl border border-(--border) bg-(--surface-1) p-4"
+      >
         <InputField
           label="SG (Specific Gravity)"
           name="sg"
@@ -126,7 +237,10 @@ function DensityConverter() {
           value={sg}
           onChange={(event) => setSg(event.target.value)}
         />
-        <button type="submit" className="w-full rounded-xl bg-(--accent) px-3 py-2 font-semibold text-(--accent-contrast) hover:opacity-90">
+        <button
+          type="submit"
+          className="w-full rounded-xl bg-(--accent) px-3 py-2 font-semibold text-(--accent-contrast) hover:opacity-90"
+        >
           Oblicz
         </button>
         <ResultBlock title="BLG" value={blgResult} />
@@ -178,7 +292,10 @@ function AlcoholCalculator() {
       <div className="grid gap-3 md:grid-cols-3">
         <ResultBlock title="ABV (objętościowo)" value={`${result.abv} %`} />
         <ResultBlock title="ABW (wagowo)" value={`${result.abw} %`} />
-        <ResultBlock title="Stopień odfermentowania" value={`${result.fermentationDegree} %`} />
+        <ResultBlock
+          title="Stopień odfermentowania"
+          value={`${result.fermentationDegree} %`}
+        />
       </div>
     </div>
   );
@@ -191,15 +308,18 @@ function RefractometerCalculator() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const { correctedBlg } = calculateRefractometerCorrection(Number(ob), Number(fb));
+    const { correctedBlg } = calculateRefractometerCorrection(
+      Number(ob),
+      Number(fb),
+    );
     setResult(correctedBlg);
   };
 
   return (
     <div className="space-y-4">
       <p className="text-sm leading-relaxed text-(--text-muted)">
-        Refraktometr mierzy współczynnik załamania światła. Przy fermentacji alkohol zaburza odczyt, dlatego wynik
-        wymaga korekty.
+        Refraktometr mierzy współczynnik załamania światła. Przy fermentacji
+        alkohol zaburza odczyt, dlatego wynik wymaga korekty.
       </p>
       <form onSubmit={onSubmit} className="grid gap-3 md:grid-cols-2">
         <InputField
@@ -225,7 +345,10 @@ function RefractometerCalculator() {
           Oblicz
         </button>
       </form>
-      <ResultBlock title="Gęstość końcowa po korekcie" value={`${result} BLG`} />
+      <ResultBlock
+        title="Gęstość końcowa po korekcie"
+        value={`${result} BLG`}
+      />
     </div>
   );
 }
@@ -239,16 +362,36 @@ export default function Calculators() {
 
   return (
     <div className="grid gap-4">
-      <AccordionItem index={0} activeIndex={activeIndex} onToggle={toggle} title="Korekta gęstości brzeczki">
+      <AccordionItem
+        index={0}
+        activeIndex={activeIndex}
+        onToggle={toggle}
+        title="Korekta gęstości brzeczki"
+      >
         <DilutionCalculator />
       </AccordionItem>
-      <AccordionItem index={1} activeIndex={activeIndex} onToggle={toggle} title="Konwerter jednostek gęstości">
+      <AccordionItem
+        index={1}
+        activeIndex={activeIndex}
+        onToggle={toggle}
+        title="Konwerter jednostek gęstości"
+      >
         <DensityConverter />
       </AccordionItem>
-      <AccordionItem index={2} activeIndex={activeIndex} onToggle={toggle} title="Oblicz zawartość alkoholu w piwie">
+      <AccordionItem
+        index={2}
+        activeIndex={activeIndex}
+        onToggle={toggle}
+        title="Oblicz zawartość alkoholu w piwie"
+      >
         <AlcoholCalculator />
       </AccordionItem>
-      <AccordionItem index={3} activeIndex={activeIndex} onToggle={toggle} title="Korekta odczytu refraktometru">
+      <AccordionItem
+        index={3}
+        activeIndex={activeIndex}
+        onToggle={toggle}
+        title="Korekta odczytu refraktometru"
+      >
         <RefractometerCalculator />
       </AccordionItem>
     </div>

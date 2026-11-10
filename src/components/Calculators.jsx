@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import AccordionItem from "./AccordionItem";
-import { calculateAbvMetrics, calculateDilution, calculateRefractometerCorrection } from "../lib/calculators";
+import {
+  calculateAbvMetrics,
+  calculateDilution,
+  calculatePrimingSugar,
+  calculateRefractometerCorrection,
+} from "../lib/calculators";
 import { convertToPlato, convertToSg } from "../lib/conversions";
 
 function InputField({ label, name, step, placeholder, value, onChange }) {
@@ -18,6 +23,26 @@ function InputField({ label, name, step, placeholder, value, onChange }) {
         onChange={onChange}
         className="w-full rounded-xl border border-(--border) bg-(--surface-1) px-3 py-2 text-(--text-primary) outline-none transition placeholder:text-(--text-muted) focus:border-(--accent) focus:ring-2 focus:ring-(--accent)/35"
       />
+    </label>
+  );
+}
+
+function SelectField({ label, name, value, onChange, options }) {
+  return (
+    <label className="flex flex-col gap-2">
+      <span className="text-sm font-medium text-(--text-muted)">{label}</span>
+      <select
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="w-full rounded-xl border border-(--border) bg-(--surface-1) px-3 py-2 text-(--text-primary) outline-none transition focus:border-(--accent) focus:ring-2 focus:ring-(--accent)/35"
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </label>
   );
 }
@@ -230,6 +255,78 @@ function RefractometerCalculator() {
   );
 }
 
+const PRIMING_SUGAR_OPTIONS = [
+  { value: "glucose", label: "Glukoza (dekstroza)" },
+  { value: "sucrose", label: "Cukier (sacharoza)" },
+];
+
+function PrimingCalculator() {
+  const [volume, setVolume] = useState("20");
+  const [targetCo2, setTargetCo2] = useState("2.5");
+  const [temperature, setTemperature] = useState("20");
+  const [sugarType, setSugarType] = useState("glucose");
+  const [result, setResult] = useState(() => calculatePrimingSugar(20, 2.5, 20, "glucose"));
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setResult(calculatePrimingSugar(Number(volume), Number(targetCo2), Number(temperature), sugarType));
+  };
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm leading-relaxed text-(--text-muted)">
+        Oblicz, ile cukru dodać do piwa przed rozlewem, aby uzyskać zamierzone nasycenie CO₂. Podaj najwyższą
+        temperaturę, jaką piwo osiągnęło po zakończeniu fermentacji – od niej zależy, ile CO₂ jest już w nim
+        rozpuszczone.
+      </p>
+      <form onSubmit={onSubmit} className="grid gap-3 md:grid-cols-2">
+        <InputField
+          label="Ilość piwa (L)"
+          name="volume"
+          step="0.1"
+          placeholder="20"
+          value={volume}
+          onChange={(event) => setVolume(event.target.value)}
+        />
+        <InputField
+          label="Docelowe nasycenie (vol CO₂)"
+          name="targetCo2"
+          step="0.1"
+          placeholder="2.5"
+          value={targetCo2}
+          onChange={(event) => setTargetCo2(event.target.value)}
+        />
+        <InputField
+          label="Temperatura piwa (°C)"
+          name="temperature"
+          step="0.5"
+          placeholder="20"
+          value={temperature}
+          onChange={(event) => setTemperature(event.target.value)}
+        />
+        <SelectField
+          label="Rodzaj cukru"
+          name="sugarType"
+          value={sugarType}
+          onChange={(event) => setSugarType(event.target.value)}
+          options={PRIMING_SUGAR_OPTIONS}
+        />
+        <button
+          type="submit"
+          className="md:col-span-2 rounded-xl bg-(--accent) px-4 py-3 font-semibold text-(--accent-contrast) transition hover:opacity-90"
+        >
+          Oblicz
+        </button>
+      </form>
+      <div className="grid gap-3 md:grid-cols-3">
+        <ResultBlock title="Ilość cukru" value={`${result.sugarTotal} g`} />
+        <ResultBlock title="Na 1 L piwa" value={`${result.sugarPerLiter} g`} />
+        <ResultBlock title="CO₂ obecny w piwie" value={`${result.residualCo2} vol`} />
+      </div>
+    </div>
+  );
+}
+
 export default function Calculators() {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -250,6 +347,9 @@ export default function Calculators() {
       </AccordionItem>
       <AccordionItem index={3} activeIndex={activeIndex} onToggle={toggle} title="Korekta odczytu refraktometru">
         <RefractometerCalculator />
+      </AccordionItem>
+      <AccordionItem index={4} activeIndex={activeIndex} onToggle={toggle} title="Cukier do refermentacji">
+        <PrimingCalculator />
       </AccordionItem>
     </div>
   );
